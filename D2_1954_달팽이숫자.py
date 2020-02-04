@@ -1,13 +1,17 @@
+<<<<<<< HEAD
 def isSafe(lst, a, b):
     if lst[b][a] == 0:
         return True
     else:
         return False
 
+=======
+>>>>>>> 5a235df85c22ceeb064079074e84c027383f6903
 T = int(input())
 
 for t in range(T):
     N = int(input())
+<<<<<<< HEAD
     k = 1
     snail = [[0 for _ in range(N)] for _ in range(N)]
     dir_y = [1, 0, -1, 0]
@@ -64,3 +68,26 @@ for t in range(T):
 #     print('#{}'.format(t + 1))
 #     for i in L:
 #         print(*i)
+=======
+    field = [[0 for _ in range(N)] for __ in range(N)]
+
+    dx = [1, 0, -1, 0]
+    dy = [0, 1, 0, -1]
+    x ,y = 0, 0
+    field[y][x] = "1"
+    k = 2
+    d = 0
+
+    while k <= N**2:
+        if not(0 <= x+dx[d%4]<= N-1 and 0 <= y+dy[d%4] <= N-1) or field[y+dy[d%4]][x+dx[d%4]] != 0:
+            d += 1
+        y = y + dy[d % 4]
+        x = x + dx[d % 4]
+        field[y][x] = str(k)
+        k += 1
+
+    print("#{}".format(t+1))
+    for i in range(N):
+        print(" ".join(field[i]))
+
+>>>>>>> 5a235df85c22ceeb064079074e84c027383f6903

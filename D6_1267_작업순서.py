@@ -1,42 +1,93 @@
-for t in range(10):
-    V, E = map(int, input().split())
+# def DFS(indeg):
+#     global field, V, out
+#     for f in range(len(indeg)):
+#         if indeg[f] == 0:
+#             out.append(f+1)
+#             for now in range(V):
+#                 if field[f][now] and indeg[now]:
+#                     field[f][now] -=1
+#                     indeg[now] -= 1
+#                     DFS(now)
+#
+# for t in range(10):
+#     V, E = map(int, input().split()) #V 그래프의 정점의 총 수 E 간선의 총 수
+#     V_lst = list(map(int, input().split()))
+#
+#     field = [[0] * V for _ in range(V)]
+#     out = []
+#     indeg = [0] * V
+#
+#     for i in range(E):
+#         start = V_lst[2*i]
+#         end = V_lst[2*i+1]
+#         field[start-1][end-1] += 1
+#         indeg[end-1] += 1
+#
+#     DFS(indeg)
+#     out = list(map(str, out))
+#     print("#{} {}".format(t+1, " ".join(out)))
+
+
+#
+# def DFS(here):
+#     global field, V, indeg, out
+#     out.append(here+1)
+#     indeg[here] = -1
+#     for now in range(V):
+#         if now+1 not in out:
+#             if field[here][now] and indeg[now]:
+#                 field[here][now] -=1
+#                 DFS(now)
+#             elif indeg[now] == 0:
+#                 DFS(now)
+#
+# for t in range(1):
+#     V, E = map(int, input().split()) #V 그래프의 정점의 총 수 E 간선의 총 수
+#     V_lst = list(map(int, input().split()))
+#     # visited = [0] * V
+#     field = [[0] * V for _ in range(V)]
+#     out = []
+#     indeg = [0] * V
+#
+#     for i in range(E):
+#         start = V_lst[2*i]
+#         end = V_lst[2*i+1]
+#         field[start-1][end-1] = 1
+#         indeg[end-1] += 1
+#
+#     here = indeg.index(0)
+#     DFS(here)
+#     out = list(map(str, out))
+#     print("#{} {}".format(t+1, " ".join(out)))
+
+
+
+def DFS(indeg):
+    global field, V, out
+    for here in range(V):
+        if indeg[here] == 0 and (here+1) not in out:
+            out.append(here+1)
+        for now in range(V):
+            if field[here][now] == 1:
+                field[here][now] = 0
+                indeg[now] -= 1
+        DFS(indeg)
+
+
+for t in range(1):
+    V, E = map(int, input().split()) #V 그래프의 정점의 총 수 E 간선의 총 수
     V_lst = list(map(int, input().split()))
+    field = [[0] * V for _ in range(V)]
+    out = []
+    indeg = [0] * V
 
-    # lst = []
-    # for i in range(0, len(V_lst)-1, 2):
-    #     lst += [(V_lst[i], V_lst[i+1])]
-    # print(lst)
+    for i in range(E):
+        start = V_lst[2*i]
+        end = V_lst[2*i+1]
+        field[start-1][end-1] = 1
+        indeg[end-1] += 1
 
-    max_num = max(V_lst)
-    # print(max_num)
-    field = [[0] * (max_num+1) for _ in range(max_num+1)]
 
-    # print(field)
-    indeg = [0]* (max_num+1)
-    outdeg = [0]* (max_num+1)
-    for i in range(0, len(V_lst)-1, 2):
-        start = V_lst[i]
-        end = V_lst[i+1]
-        field[start][end] += 1
-        indeg[end] += 1
-        outdeg[start] += 1
-
-    # print(field)
-    # print(indeg)
-    # print(outdeg)
-    res = [0] * 2
-    for y in range(max_num+1):
-        for x in range(max_num+1):
-            if field[y][x] == 1:
-                if indeg[y] == 0 and outdeg[x] >=1:
-                    res[0] = str(y)
-                    res[1] = str(x)
-                    outdeg[y] -= 1
-                    # indeg[x] = -1
-                elif indeg[x] > 0 and outdeg[x]>=0:
-                    res += [str(x)]
-                    outdeg[x] -= 1
-                # elif indeg[y] > 0 and outdeg[x]>=0:
-                #     res += [str(x)]
-                #     outdeg[x] -= 1
-    print("#{} {}".format(t+1, " ".join(res)))
+    DFS(indeg)
+    out = list(map(str, out))
+    print("#{} {}".format(t+1, " ".join(out)))

@@ -8,25 +8,25 @@ for t in range(T):
     for n in range(N):
         field[n] = list(map(str, input()))
 
+    for y in range(N):
+        lst = []
+        lst2 = []
+        for x in range(N):
+            lst += field[y][x]
+            lst2 += field[x][y]
 
-    for y in range(N-(N-M)):
-        for x in range(N-(N-M)):
-            for ym in range(y, y+M):
-                lst = ''
-                for xm in range(x, x+M):
-                    lst += field[ym][xm]
-                if lst == lst[::-1]:
-                    res = lst
-        break
+        for j in range(N-M+1):
+            check = []
+            for i in range(j, j+M):
+                check += lst[i]
+            if check == check[::-1]:
+                res = check
 
-    for y in range(N-(N-M)):
-        for x in range(N-(N-M)):
-            for ym in range(y, y+M):
-                lst = ''
-                for xm in range(x, x+M):
-                    lst += field[xm][ym]
-                if lst == lst[::-1]:
-                    res = lst
-                    break
+        for j in range(N-M+1):
+            check2 = []
+            for i in range(j, j+M):
+                check2 += lst2[i]
+            if check2 == check2[::-1]:
+                res = check2
 
-    print(res)
+    print("#{} {}".format(t+1,''.join(res)))

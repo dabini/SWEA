@@ -1,17 +1,11 @@
-def BFS(S):
-    global res, k, G
-    k += 1
-    for x in range(V):
-        if mymap[S][x] == 1 and not visited[x]:
-            visited[x] = 1
-            if x == G:
-                res = k
-                break
-                return res
-            else:
-                BFS(x)
-                k -= 1
-        return
+def BFS(S, G):
+    global res
+    q.append(S)
+    while q:
+        n = q.pop(0)
+        if n not in visited:
+            visited.append(n)
+            q
 
 T = int(input())
 
@@ -21,6 +15,7 @@ for t in range(T):
     visited = [0]*(V+1)
     res = 0
     k = 0
+    q = []
     for e in range(E):
         start, end = map(int, input().split())
         mymap[start][end] = 1

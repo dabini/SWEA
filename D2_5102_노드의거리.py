@@ -11,8 +11,8 @@ def BFS(S):
                 visited[new] = visited[n] + 1
                 q.append(new)
                 res.append(new)
-T = int(input())
 
+T = int(input())
 for t in range(T):
     V, E = map(int, input().split()) #V노드의 개수, E 간선 정보
     mymap = [[0]*(V+1) for _ in range(V+1)]

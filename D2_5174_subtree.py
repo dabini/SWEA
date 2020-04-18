@@ -17,7 +17,7 @@ for t in range(T):
             arr[lst[2*i]][0] = lst[2*i+1]
         else:
             arr[lst[2*i]][1] = lst[2*i+1]
-    # print(arr)
+    print(arr)
     cnt = 1
     check(N)
     print("#{} {}".format(t+1, cnt))

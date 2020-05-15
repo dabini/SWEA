@@ -25,24 +25,24 @@ for t in range(T):
     for n in range(N):
         lst[n] = list(map(int, input().split()))
     startX, startY = map(int, lst[0])
-    result = 0
+    res = 0
     for n in range(1, N):
         endX, endY = map(int, lst[n])
         if endX >= startX and endY >= startY:
             X = endX - startX
             Y = endY - startY
             if X > Y:
-                result += X
+                res += X
             else:
-                result += Y
+                res += Y
 
         elif endX > startX and endY < startY:
             X = endX - startX
             Y = startY - endY
-            result += (X + Y)
+            res += (X + Y)
         elif endX < startX and endY > startY:
             X = startX - endX
             Y = endY - startY
-            result += (X + Y)
+            res += (X + Y)
         startX, startY = endX, endY
-    print('#{} {}'.format(t+1, result))
+    print('#{} {}'.format(t + 1, res))

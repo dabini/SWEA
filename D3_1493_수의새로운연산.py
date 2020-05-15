@@ -17,5 +17,5 @@ for tc in range(1, int(input())+1):
                 x1, y1 = i, j
             if field[i][j] == q:
                 x2, y2 = i, j
-    result = field[x1 + x2][y1 + y2]
-    print(f"#{tc} {result}")
+    res = field[x1 + x2][y1 + y2]
+    print(f"#{tc} {res}")
